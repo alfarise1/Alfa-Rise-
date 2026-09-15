@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizon Properties — Demo by Alfa Rise</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', Arial, sans-serif; background: #faf8f4; color: #2b2620; }
+.demo-badge { background: #8a6a3d; color: #fff; text-align: center; padding: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; }
+header { background: #1c1710; color: #f5efe4; padding: 60px 24px 70px; text-align: center; }
+header h1 { font-family: 'Fraunces', serif; font-size: clamp(30px,6vw,42px); margin-bottom: 10px; color: #e0b673; }
+header p { color: #cbbfa8; font-size: 16px; max-width: 420px; margin: 0 auto; }
+.btn { display: inline-block; background: #e0b673; color: #1c1710; padding: 13px 28px; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 15px; margin-top: 26px; }
+section { max-width: 650px; margin: 0 auto; padding: 46px 24px; }
+h2 { text-align: center; color: #8a6a3d; margin-bottom: 26px; font-family: 'Fraunces', serif; font-size: 24px; }
+.listings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 18px; }
+.listing-card { background: white; border-radius: 10px; overflow: hidden; border: 1px solid #e8e0d2; }
+.listing-img { background: linear-gradient(135deg, #d9c8a8, #c4a876); height: 90px; display: flex; align-items: center; justify-content: center; }
+.listing-info { padding: 14px; }
+.listing-info h4 { font-size: 15px; margin-bottom: 4px; color: #2b2620; }
+.listing-info .price { color: #8a6a3d; font-weight: 700; font-size: 15px; }
+.listing-info .loc { color: #8a8171; font-size: 12.5px; }
+.cta { text-align: center; padding: 50px 24px; background: #1c1710; color: #f5efe4; }
+.cta h2 { color: #e0b673; }
+footer { text-align: center; padding: 22px; font-size: 12.5px; color: #a89a80; }
+</style>
+</head>
+<body>
+<div class="demo-badge">DEMO PROJECT — Concept design by Alfa Rise, not a real client</div>
+<header>
+    <h1>Horizon Properties</h1>
+    <p>Find your next home or investment — trusted local property experts.</p>
+    <a class="btn" href="#">View Listings</a>
+</header>
+<section>
+    <h2>Featured Listings</h2>
+    <div class="listings-grid">
+        <div class="listing-card">
+            <div class="listing-img"><svg viewBox="0 0 24 24" fill="none" stroke="#5a4626" stroke-width="1.5" style="width:34px;height:34px;"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div>
+            <div class="listing-info"><h4>5 Marla House, DHA</h4><div class="price">Rs 2.2 Crore</div><div class="loc">DHA Phase 6, Lahore</div></div>
+        </div>
+        <div class="listing-card">
+            <div class="listing-img"><svg viewBox="0 0 24 24" fill="none" stroke="#5a4626" stroke-width="1.5" style="width:34px;height:34px;"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"/></svg></div>
+            <div class="listing-info"><h4>2-Bed Apartment</h4><div class="price">Rs 85 Lac</div><div class="loc">Bahria Town</div></div>
+        </div>
+        <div class="listing-card">
+            <div class="listing-img"><svg viewBox="0 0 24 24" fill="none" stroke="#5a4626" stroke-width="1.5" style="width:34px;height:34px;"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
+            <div class="listing-info"><h4>10 Marla Plot</h4><div class="price">Rs 1.5 Crore</div><div class="loc">Johar Town</div></div>
+        </div>
+    </div>
+</section>
+<div class="cta">
+    <h2>Looking to Buy or Sell?</h2>
+    <a class="btn" href="#"><svg style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.72.45 3.39 1.32 4.86L2 22l5.25-1.38c1.41.77 3 1.18 4.79 1.18 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/></svg>Talk to an Agent on WhatsApp</a>
+</div>
+<footer>This is a demo/concept website created to showcase Alfa Rise's design capabilities.</footer>
+</body>
+</html>
