@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alfa Rise — Web Development & AI Solutions</title>
+<meta name="description" content="Alfa Rise builds modern, professional websites and AI automation for small businesses. Get a website that actually wins you customers.">
+<meta property="og:title" content="Alfa Rise — Web Development & AI Solutions">
+<meta property="og:description" content="Modern websites, AI chatbots, and automation for small businesses.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230a332f'/%3E%3Crect x='25' y='55' width='14' height='25' rx='3' fill='%234a6fa5'/%3E%3Crect x='43' y='40' width='14' height='40' rx='3' fill='%236b8cc4'/%3E%3Crect x='61' y='25' width='14' height='55' rx='3' fill='%2325d366'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --ink: #14231f;
+        --paper: #f7f4ee;
+        --teal: #0f4c46;
+        --teal-dark: #0a332f;
+        --gold: #c98a3e;
+        --gold-light: #e8c896;
+        --line: #d8d2c4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: 'Inter', Arial, sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.5;
+    }
+
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; }
+
+    a { color: inherit; }
+
+    /* ---------- NAV ---------- */
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        padding: 16px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav .logo {
+        font-family: 'Fraunces', serif;
+        font-weight: 700;
+        font-size: 21px;
+        color: var(--teal-dark);
+    }
+
+    nav .logo em {
+        font-style: normal;
+        color: var(--gold);
+    }
+
+    nav a.nav-cta {
+        background: var(--teal);
+        color: var(--paper);
+        padding: 9px 18px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: background 0.15s ease;
+    }
+
+    nav a.nav-cta:hover { background: var(--teal-dark); }
+
+    /* ---------- HERO ---------- */
+    header.hero {
+        background: var(--teal-dark);
+        color: var(--paper);
+        padding: 80px 24px 90px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    header.hero::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--teal) 0%, transparent 70%);
+        top: -200px;
+        right: -150px;
+        opacity: 0.6;
+    }
+
+    .hero-inner {
+        max-width: 620px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        animation: rise 0.7s ease-out both;
+    }
+
+    @keyframes rise {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    header.hero h1 {
+        font-size: clamp(38px, 8vw, 56px);
+        font-weight: 700;
+        line-height: 1.05;
+        margin-bottom: 18px;
+    }
+
+    header.hero .lede {
+        font-size: 17px;
+        color: var(--gold-light);
+        max-width: 480px;
+        margin: 0 auto 34px;
+        line-height: 1.6;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .btn {
+        padding: 14px 30px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 3px;
+        width: 100%;
+        max-width: 280px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        font-family: 'Inter', sans-serif;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn.primary { background: var(--gold); color: var(--teal-dark); box-shadow: 0 4px 14px rgba(201,138,62,0.25); }
+    .btn.primary:hover { box-shadow: 0 6px 18px rgba(201,138,62,0.4); transform: translateY(-1px); }
+    .btn.secondary { background: transparent; color: var(--paper); border: 1px solid rgba(247,244,238,0.4); }
+    .btn.secondary:hover { border-color: rgba(247,244,238,0.8); background: rgba(247,244,238,0.06); }
+
+    /* ---------- SECTIONS ---------- */
+    section { max-width: 640px; margin: 0 auto; padding: 64px 24px; }
+
+    .eyebrow-title {
+        font-size: 27px;
+        font-weight: 500;
+        margin-bottom: 6px;
+    }
+
+    section .subtitle {
+        color: #5c6b67;
+        margin-bottom: 32px;
+        font-size: 15px;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-text {
+        font-size: 18px;
+        line-height: 1.75;
+        color: #2b3936;
+        border-left: 3px solid var(--gold);
+        padding-left: 22px;
+    }
+
+    /* ---------- SERVICES ---------- */
+    .services-list {
+        border-top: 1px solid var(--line);
+    }
+
+    .service-row {
+        display: flex;
+        gap: 18px;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--line);
+        align-items: baseline;
+    }
+
+    .service-row .num {
+        font-family: 'Fraunces', serif;
+        font-size: 15px;
+        color: var(--gold);
+        min-width: 24px;
+    }
+
+    .service-row h4 {
+        font-family: 'Inter', sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--teal-dark);
+        margin-bottom: 4px;
+    }
+
+    .service-row p { color: #56605d; font-size: 14.5px; }
+
+    /* ---------- PORTFOLIO ---------- */
+    .portfolio-card {
+        background: var(--teal-dark);
+        color: var(--paper);
+        border-radius: 4px;
+        padding: 32px 26px;
+        transition: transform 0.2s ease;
+    }
+
+    .portfolio-card:hover { transform: translateY(-2px); }
+
+    .portfolio-card h4 { font-size: 22px; margin-bottom: 8px; }
+    .portfolio-card p { color: var(--gold-light); font-size: 14px; margin-bottom: 18px; }
+    .portfolio-card a {
+        color: var(--gold);
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 14px;
+        font-family: 'Inter', sans-serif;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.15s ease;
+    }
+
+    .portfolio-card a:hover { border-color: var(--gold); }
+
+    /* ---------- PRICING ---------- */
+    .currency-toggle {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 30px;
+    }
+
+    .curr-btn {
+        padding: 7px 16px;
+        border-radius: 20px;
+        border: 1px solid var(--teal);
+        background: transparent;
+        color: var(--teal);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .curr-btn.active { background: var(--teal); color: var(--paper); }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+    }
+
+    .price-card {
+        background: var(--paper);
+        padding: 28px 20px;
+        text-align: left;
+    }
+
+    .price-card.featured { background: #fffdf8; }
+
+    .price-card .tier-label {
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        color: var(--gold);
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .price-card h4 { font-size: 20px; margin-bottom: 12px; color: var(--teal-dark); }
+    .price-card .price { font-size: 26px; font-weight: 700; color: var(--ink); margin-bottom: 18px; font-family: 'Inter', sans-serif; }
+    .price-card ul { list-style: none; }
+    .price-card ul li { color: #4a5652; font-size: 13.5px; padding: 5px 0; }
+    .price-card ul li::before { content: "— "; color: var(--gold); }
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testimonial-card {
+        padding: 24px 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .testimonial-card:first-of-type { border-top: 1px solid var(--line); }
+
+    .testimonial-card p.quote {
+        font-family: 'Fraunces', serif;
+        font-size: 18px;
+        font-style: italic;
+        color: var(--teal-dark);
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .testimonial-card .name {
+        font-weight: 600;
+        color: #5c6b67;
+        font-size: 13px;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-section {
+        background: var(--teal-dark);
+        color: var(--paper);
+        text-align: center;
+        padding: 70px 24px;
+    }
+
+    .contact-section h3 { color: var(--paper); font-size: 30px; margin-bottom: 10px; }
+    .contact-section p { color: var(--gold-light); margin-bottom: 30px; font-size: 15px; }
+
+    footer {
+        text-align: center;
+        padding: 26px;
+        font-size: 12.5px;
+        color: #8a938f;
+        background: var(--paper);
+        border-top: 1px solid var(--line);
+    }
+
+    /* ---------- SOCIAL ---------- */
+    .social-section { max-width: 640px; margin: 0 auto; padding: 50px 24px; text-align: center; }
+    .social-section h2 { font-size: 22px; margin-bottom: 22px; color: var(--teal-dark); }
+    .social-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .social-link {
+        text-decoration: none;
+        padding: 10px 20px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        color: var(--teal-dark);
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .social-link:hover { border-color: var(--teal); background: rgba(15,76,70,0.05); }
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Alfa<em>Rise</em></div>
+    <a class="nav-cta" href="https://wa.me/923067010978?text=Hi%2C%20I%27m%20interested%20in%20your%20web%20services" target="_blank">WhatsApp</a>
+</nav>
+
+<header class="hero">
+    <div class="hero-inner">
+        <h1>Websites that make small businesses look established.</h1>
+        <p class="lede">We design and build fast, professional websites — plus AI chatbots and automation — for small businesses ready to grow online.</p>
+        <div class="buttons">
+            <a class="btn primary" href="https://wa.me/923067010978?text=Hi%2C%20I%27m%20interested%20in%20your%20web%20services" target="_blank">Start a project</a>
+            <a class="btn secondary" href="mailto:alfarisestore@gmail.com?subject=Website%20Inquiry">Email us instead</a>
+        </div>
+    </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="eyebrow-title">What we do</h2>
+    <p class="subtitle">A small studio, built for small business</p>
+    <p class="about-text">
+        Alfa Rise helps small businesses and entrepreneurs put their best foot forward
+        online. We combine clean, considered design with practical AI tools — so your
+        website doesn't just look good, it actually saves you time and wins you customers.
+    </p>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+    <h2 class="eyebrow-title">Services</h2>
+    <p class="subtitle">Everything you need to go online</p>
+    <div class="services-list">
+        <div class="service-row">
+            <span class="num">01</span>
+            <div><h4>Web Design</h4><p>Modern, mobile-friendly websites built to convert visitors into customers.</p></div>
+        </div>
+        <div class="service-row">
+            <span class="num">02</span>
+            <div><h4>AI Chatbots</h4><p>24/7 automated replies on WhatsApp or your website — never miss an inquiry.</p></div>
+        </div>
+        <div class="service-row">
+            <span class="num">03</span>
+            <div><h4>Automation</h4><p>Order confirmations, appointment booking, and email workflows, handled for you.</p></div>
+        </div>
+        <div class="service-row">
+            <span class="num">04</span>
+            <div><h4>Branding</h4><p>Logos and visual identity that make your business look established from day one.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+    <h2 class="eyebrow-title">Our work</h2>
+    <p class="subtitle">A sample of what we build</p>
+    <div class="portfolio-card">
+        <h4>Alfa Rise</h4>
+        <p>This very website — designed, built, and hosted by us.</p>
+        <a href="https://alfarise1.github.io/Alfa-Rise-/" target="_blank">View live site →</a>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+    <h2 class="eyebrow-title">Pricing</h2>
+    <p class="subtitle">Simple, transparent packages</p>
+    <div class="currency-toggle">
+        <button class="curr-btn active" data-curr="pkr" onclick="setCurrency('pkr')">Rs — Pakistan</button>
+        <button class="curr-btn" data-curr="usd" onclick="setCurrency('usd')">$ — International</button>
+    </div>
+    <div class="pricing-grid">
+        <div class="price-card">
+            <div class="tier-label">STARTER</div>
+            <h4>Basic</h4>
+            <div class="price"><span class="p-pkr">Rs 15,000</span><span class="p-usd" style="display:none">$60</span></div>
+            <ul>
+                <li>Single-page website</li>
+                <li>Mobile responsive</li>
+                <li>WhatsApp button</li>
+                <li>2 revisions</li>
+            </ul>
+        </div>
+        <div class="price-card featured">
+            <div class="tier-label">MOST POPULAR</div>
+            <h4>Standard</h4>
+            <div class="price"><span class="p-pkr">Rs 35,000</span><span class="p-usd" style="display:none">$140</span></div>
+            <ul>
+                <li>Multi-page website</li>
+                <li>WhatsApp + email integration</li>
+                <li>SEO-friendly setup</li>
+                <li>4 rounds of revisions</li>
+            </ul>
+        </div>
+        <div class="price-card">
+            <div class="tier-label">FULL SERVICE</div>
+            <h4>Premium</h4>
+            <div class="price"><span class="p-pkr">Rs 60,000+</span><span class="p-usd" style="display:none">$240+</span></div>
+            <ul>
+                <li>Everything in Standard</li>
+                <li>AI chatbot integration</li>
+                <li>Automation setup</li>
+                <li>Priority support</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <h2 class="eyebrow-title">What clients say</h2>
+    <p class="subtitle">Sample feedback — style of testimonials our clients will see here</p>
+    <div class="testimonial-card">
+        <p class="quote">"Alfa Rise delivered our website faster than expected and it looks fantastic. Communication was smooth throughout."</p>
+        <div class="name">SAMPLE CLIENT · RETAIL BUSINESS</div>
+    </div>
+    <div class="testimonial-card">
+        <p class="quote">"The WhatsApp integration alone has saved us hours every week. Highly recommend for any small business."</p>
+        <div class="name">SAMPLE CLIENT · HOME SERVICES</div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <h3>Ready to get started?</h3>
+    <p>Tell us about your project — we usually reply within a few hours.</p>
+    <div class="buttons">
+        <a class="btn primary" href="https://wa.me/923067010978?text=Hi%2C%20I%27m%20interested%20in%20your%20web%20services" target="_blank">WhatsApp us</a>
+        <a class="btn secondary" href="mailto:alfarisestore@gmail.com?subject=Website%20Inquiry">Email us</a>
+    </div>
+</section>
+
+<section class="social-section">
+    <h2>Connect With Us</h2>
+    <div class="social-links">
+        <a class="social-link" href="https://www.instagram.com/alfariseinsta/" target="_blank">📷 Instagram</a>
+        <a class="social-link" href="https://www.facebook.com/share/1CFM21LdHq/" target="_blank">📘 Facebook</a>
+        <a class="social-link" href="https://github.com/alfarise1" target="_blank">💻 GitHub</a>
+        <a class="social-link" href="https://wa.me/923067010978" target="_blank">💬 WhatsApp</a>
+    </div>
+</section>
+
+<footer>© 2026 Alfa Rise. All rights reserved.</footer>
+
+<script>
+    function setCurrency(curr) {
+        document.querySelectorAll('.curr-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-curr="' + curr + '"]').classList.add('active');
+        document.querySelectorAll('.p-pkr').forEach(el => el.style.display = curr === 'pkr' ? 'inline' : 'none');
+        document.querySelectorAll('.p-usd').forEach(el => el.style.display = curr === 'usd' ? 'inline' : 'none');
+    }
+    (function() {
+        try {
+            var locale = navigator.language || navigator.userLanguage || '';
+            var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+            if (!locale.toLowerCase().includes('pk') && !tz.toLowerCase().includes('karachi')) {
+                setCurrency('usd');
+            }
+        } catch (e) {}
+    })();
+
+    // Subtle reveal animation as sections enter view
+    (function() {
+        var sections = document.querySelectorAll('section');
+        sections.forEach(function(s) {
+            s.style.opacity = '0';
+            s.style.transform = 'translateY(14px)';
+            s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(function(s) { observer.observe(s); });
+    })();
+</script>
+
+</body>
+</html>
