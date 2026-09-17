@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alfa Rise — Web Development & AI Solutions</title>
+<meta name="description" content="Alfa Rise builds modern, professional websites and AI automation for small businesses. Get a website that actually wins you customers.">
+<meta property="og:title" content="Alfa Rise — Web Development & AI Solutions">
+<meta property="og:description" content="Modern websites, AI chatbots, and automation for small businesses.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230a332f'/%3E%3Crect x='25' y='55' width='14' height='25' rx='3' fill='%234a6fa5'/%3E%3Crect x='43' y='40' width='14' height='40' rx='3' fill='%236b8cc4'/%3E%3Crect x='61' y='25' width='14' height='55' rx='3' fill='%2325d366'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --ink: #14231f;
+        --paper: #f7f4ee;
+        --teal: #0f4c46;
+        --teal-dark: #0a332f;
+        --gold: #c98a3e;
+        --gold-light: #e8c896;
+        --line: #d8d2c4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: 'Inter', Arial, sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.5;
+    }
+
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; }
+
+    a { color: inherit; }
+
+    /* ---------- NAV ---------- */
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        padding: 16px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav .logo {
+        font-family: 'Fraunces', serif;
+        font-weight: 700;
+        font-size: 21px;
+        color: var(--teal-dark);
+    }
+
+    nav .logo em {
+        font-style: normal;
+        color: var(--gold);
+    }
+
+    nav a.nav-cta {
+        background: var(--teal);
+        color: var(--paper);
+        padding: 9px 18px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: background 0.15s ease;
+    }
+
+    nav a.nav-cta:hover { background: var(--teal-dark); }
+
+    /* ---------- HERO ---------- */
+    header.hero {
+        background: var(--teal-dark);
+        color: var(--paper);
+        padding: 80px 24px 90px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    header.hero::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--teal) 0%, transparent 70%);
+        top: -200px;
+        right: -150px;
+        opacity: 0.6;
+    }
+
+    .hero-inner {
+        max-width: 620px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        animation: rise 0.7s ease-out both;
+    }
+
+    @keyframes rise {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    header.hero h1 {
+        font-size: clamp(38px, 8vw, 56px);
+        font-weight: 700;
+        line-height: 1.05;
+        margin-bottom: 18px;
+    }
+
+    header.hero .lede {
+        font-size: 17px;
+        color: var(--gold-light);
+        max-width: 480px;
+        margin: 0 auto 34px;
+        line-height: 1.6;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .btn {
+        padding: 14px 30px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 3px;
+        width: 100%;
+        max-width: 280px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        font-family: 'Inter', sans-serif;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn.primary { background: var(--gold); color: var(--teal-dark); box-shadow: 0 4px 14px rgba(201,138,62,0.25); }
+    .btn.primary:hover { box-shadow: 0 6px 18px rgba(201,138,62,0.4); transform: translateY(-1px); }
+    .btn.secondary { background: transparent; color: var(--paper); border: 1px solid rgba(247,244,238,0.4); }
+    .btn.secondary:hover { border-color: rgba(247,244,238,0.8); background: rgba(247,244,238,0.06); }
+
+    /* ---------- SECTIONS ---------- */
+    section { max-width: 640px; margin: 0 auto; padding: 64px 24px; }
+
+    .eyebrow-title {
+        font-size: 27px;
+        font-weight: 500;
+        margin-bottom: 6px;
+    }
+
+    section .subtitle {
+        color: #5c6b67;
+        margin-bottom: 32px;
+        font-size: 15px;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-text {
+        font-size: 18px;
+        line-height: 1.75;
+        color: #2b3936;
+        border-left: 3px solid var(--gold);
+        padding-left: 22px;
+    }
+
+    /* ---------- SERVICES ---------- */
+    .services-list {
+        border-top: 1px solid var(--line);
+    }
+
+    .service-row {
+        display: flex;
+        gap: 18px;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--line);
+        align-items: baseline;
+    }
+
+    .service-row .num {
+        font-family: 'Fraunces', serif;
+        font-size: 15px;
+        color: var(--gold);
+        min-width: 24px;
+    }
+
+    .svc-icon {
+        width: 26px;
+        height: 26px;
+        color: var(--teal);
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .service-row h4 {
+        font-family: 'Inter', sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--teal-dark);
+        margin-bottom: 4px;
+    }
+
+    .service-row p { color: #56605d; font-size: 14.5px; }
+
+    /* ---------- PORTFOLIO ---------- */
+    .portfolio-card {
+        background: var(--teal-dark);
+        color: var(--paper);
+        border-radius: 4px;
+        padding: 32px 26px;
+        transition: transform 0.2s ease;
+    }
+
+    .portfolio-card:hover { transform: translateY(-2px); }
+
+    .portfolio-card h4 { font-size: 22px; margin-bottom: 8px; }
+    .portfolio-card p { color: var(--gold-light); font-size: 14px; margin-bottom: 18px; }
+    .portfolio-card a {
+        color: var(--gold);
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 14px;
+        font-family: 'Inter', sans-serif;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.15s ease;
+    }
+
+    .portfolio-card a:hover { border-color: var(--gold); }
+
+    /* ---------- PRICING ---------- */
+    .currency-toggle {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 30px;
+    }
+
+    .curr-btn {
+        padding: 7px 16px;
+        border-radius: 20px;
+        border: 1px solid var(--teal);
+        background: transparent;
+        color: var(--teal);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .curr-btn.active { background: var(--teal); color: var(--paper); }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+    }
+
+    .price-card {
+        background: var(--paper);
+        padding: 28px 20px;
+        text-align: left;
+    }
+
+    .price-card.featured { background: #fffdf8; }
+
+    .price-card .tier-label {
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        color: var(--gold);
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .price-card h4 { font-size: 20px; margin-bottom: 12px; color: var(--teal-dark); }
+    .price-card .price { font-size: 26px; font-weight: 700; color: var(--ink); margin-bottom: 18px; font-family: 'Inter', sans-serif; }
+    .price-card ul { list-style: none; }
+    .price-card ul li { color: #4a5652; font-size: 13.5px; padding: 5px 0; }
+    .price-card ul li::before { content: "— "; color: var(--gold); }
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testimonial-card {
+        padding: 24px 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .testimonial-card:first-of-type { border-top: 1px solid var(--line); }
+
+    .testimonial-card p.quote {
+        font-family: 'Fraunces', serif;
+        font-size: 18px;
+        font-style: italic;
+        color: var(--teal-dark);
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .testimonial-card .name {
+        font-weight: 600;
+        color: #5c6b67;
+        font-size: 13px;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-section {
+        background: var(--teal-dark);
+        color: var(--paper);
+        text-align: center;
+        padding: 70px 24px;
+    }
+
+    .contact-section h3 { color: var(--paper); font-size: 30px; margin-bottom: 10px; }
+    .contact-section p { color: var(--gold-light); margin-bottom: 30px; font-size: 15px; }
+
+    footer {
+        text-align: center;
+        padding: 26px;
+        font-size: 12.5px;
+        color: #8a938f;
+        background: var(--paper);
+        border-top: 1px solid var(--line);
+    }
+
+    /* ---------- SOCIAL ---------- */
+    .social-section { max-width: 640px; margin: 0 auto; padding: 50px 24px; text-align: center; }
+    .social-section h2 { font-size: 22px; margin-bottom: 22px; color: var(--teal-dark); }
+    .social-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .social-link {
+        text-decoration: none;
+        padding: 10px 20px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        color: var(--teal-dark);
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        transition: border-color 0.15s ease, background 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+    }
+    .social-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .social-link:hover { border-color: var(--teal); background: rgba(15,76,70,0.05); }
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Alfa<em>Rise</em></div>
+    <a class="nav-cta" href="https://wa.me/923067010978?text=Hi%2C%20I%27m%20interested%20in%20your%20web%20services" target="_blank">WhatsApp</a>
+</nav>
+
+<header class="hero">
+    <div class="hero-inner">
+        <h1>Websites that make small businesses look established.</h1>
+        <p class="lede">We design and build fast, professional websites — plus AI chatbots and automation — for small businesses ready to grow online.</p>
+        <div class="buttons">
+            <a class="btn primary" href="https://wa.me/923067010978?text=Hi%2C%20I%27m%20interested%20in%20your%20web%20services" target="_blank">Start a project</a>
+            <a class="btn secondary" href="mailto:alfarisestore@gmail.com?subject=Website%20Inquiry">Email us instead</a>
+        </div>
+    </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="eyebrow-title">What we do</h2>
+    <p class="subtitle">A small studio, built for small business</p>
+    <p class="about-text">
+        Alfa Rise helps small businesses and entrepreneurs put their best foot forward
+        online. We combine clean, considered design with practical AI tools — so your
+        website doesn't just look good, it actually saves you time and wins you customers.
+    </p>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+    <h2 class="eyebrow-title">Services</h2>
+    <p class="subtitle">Everything you need to go online</p>
+    <div class="services-list">
+        <div class="service-row">
+            <span class="num">01</span>
+            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="14" rx="1.5"/><path d="M8 21h8M12 18v3"/></svg>
+            <div><h4>Web Design</h4><p>Modern, mobile-friendly websites built to convert visitors into customers.</p></div>
+        </div>
+        <div class="service-row">
+            <span class="num">02</span>
+            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a7 7 0 0 0-7 7v3a2 2 0 0 0 2 2h1v-6H7a5 5 0 0 1 10 0h-1v6h1a2 2 0 0 0 2-2v-3a7 7 0 0 0-7-7z"/><path d="M9 16v1a3 3 0 0 0 3 3h1"/></svg>
+            <div><h4>AI Chatbots</h4><p>24/7 automated replies on WhatsApp or your website — never miss an inquiry.</p></div>
+        </div>
+        <div class="service-row">
+            <span class="num">03</span>
+            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <div><h4>Automation</h4><p>Order confirmations, appointment booking, and email workflows, handled for you.</p></div>
+        </div>
+        <div class="service-row">
+            <span class="num">04</span>
+            <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
+            <div><h4>Branding</h4><p>Logos and visual identity that make your business look established from day one.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+    <h2 class="eyebrow-title">Our work</h2>
+    <p class="subtitle">A sample of what we build — including concept demos</p>
+    <div class="portfolio-card" style="margin-bottom:14px;">
+        <h4>Alfa Rise</h4>
+        <p>This very website — designed, built, and hosted by us.</p>
+        <a href="https://alfarise1.github.io/Alfa-Rise-/" target="_blank">View live site →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;">
+        <div class="portfolio-card" style="padding:22px 18px;">
+            <div style="font-size:11px;color:var(--gold-light);letter-spacing:0.03em;margin-bottom:8px;">DEMO PROJECT</div>
+            <h4 style="font-size:17px;">Restaurant</h4>
+            <p style="font-size:13px;">Concept design for a local eatery</p>
+            <a href="portfolio-demo-restaurant.html" target="_blank">View demo →</a>
+        </div>
+        <div class="portfolio-card" style="padding:22px 18px;">
+            <div style="font-size:11px;color:var(--gold-light);letter-spacing:0.03em;margin-bottom:8px;">DEMO PROJECT</div>
+            <h4 style="font-size:17px;">Clinic</h4>
+            <p style="font-size:13px;">Concept design for a medical center</p>
+            <a href="portfolio-demo-clinic.html" target="_blank">View demo →</a>
+        </div>
+        <div class="portfolio-card" style="padding:22px 18px;">
+            <div style="font-size:11px;color:var(--gold-light);letter-spacing:0.03em;margin-bottom:8px;">DEMO PROJECT</div>
+            <h4 style="font-size:17px;">Real Estate</h4>
+            <p style="font-size:13px;">Concept design for a property agency</p>
+            <a href="portfolio-demo-realestate.html" target="_blank">View demo →</a>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+    <h2 class="eyebrow-title">Pricing</h2>
+    <p class="subtitle">Simple, transparent packages</p>
+    <div class="currency-toggle">
+        <button class="curr-btn active" data-curr="pkr" onclick="setCurrency('pkr')">Rs — Pakistan</button>
+        <button class="curr-btn" data-curr="usd" onclick="setCurrency('usd')">$ — International</button>
+    </div>
+    <div class="pricing-grid">
+        <div class="price-card">
+            <div class="tier-label">STARTER</div>
+            <h4>Basic</h4>
+            <div class="price"><span class="p-pkr">Rs 15,000</span><span class="p-usd" style="display:none">$60</span></div>
+            <ul>
+                <li>Single-page website</li>
+                <li>Mobile responsive</li>
+                <li>WhatsApp button</li>
+                <li>2 revisions</li>
+            </ul>
+        </div>
+        <div class="price-card featured">
+            <div class="tier-label">MOST POPULAR</div>
+            <h4>Standard</h4>
+            <div class="price"><span class="p-pkr">Rs 35,000</span><span class="p-usd" style="display:none">$140</span></div>
+            <ul>
+                <li>Multi-page website</li>
+                <li>WhatsApp + email integration</li>
+                <li>SEO-friendly setup</li>
+                <li>4 rounds of revisions</li>
+            </ul>
+        </div>
+        <div class="price-card">
+            <div class="tier-label">FULL SERVICE</div>
+            <h4>Premium</h4>
+            <div class="price"><span class="p-pkr">Rs 80,000</span><span class="p-usd" style="display:none">$320</span></div>
+            <ul>
+                <li>Everything in Standard</li>
+                <li>AI chatbot integration</li>
+                <li>Automation setup</li>
+                <li>Priority support</li>
+                <li style="font-size:12px;color:#8a938f;">+ Rs 5,000/mo maintenance</li>
+            </ul>
+        </div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:#5c6b67;margin-top:20px;">AI chatbot & automation features include a small monthly maintenance fee (Rs 5,000 / $20) for hosting and updates.</p>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <h2 class="eyebrow-title">What clients say</h2>
+    <p class="subtitle">Sample feedback — style of testimonials our clients will see here</p>
+    <div class="testimonial-card">
+        <p class="quote">"Alfa Rise delivered our website faster than expected and it looks fantastic. Communication was smooth throughout."</p>
+        <div class="name">SAMPLE CLIENT · RETAIL BUSINESS</div>
+    </div>
+    <div class="testimonial-card">
+        <p class="quote">"The WhatsApp integration alone has saved us hours every week. Highly recommend for any small business."</p>
+        <div class="name">SAMPLE CLIENT · HOME SERVICES</div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <h3>Ready to get started?</h3>
+    <p>Tell us about your project — we usually reply within a few hours.</p>
+    <div class="buttons">
+        <a class="btn primary" href="https://wa.me/923067010978?text=Hi%2C%20I%27m%20interested%20in%20your%20web%20services" target="_blank">WhatsApp us</a>
+        <a class="btn secondary" href="mailto:alfarisestore@gmail.com?subject=Website%20Inquiry">Email us</a>
+    </div>
+</section>
+
+<section class="social-section">
+    <h2>Connect With Us</h2>
+    <div class="social-links">
+        <a class="social-link" href="https://www.instagram.com/alfariseinsta/" target="_blank">
+            <svg viewBox="0 0 24 24"><defs><linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#feda75"/><stop offset="30%" stop-color="#d62976"/><stop offset="60%" stop-color="#962fbf"/><stop offset="100%" stop-color="#4f5bd5"/></linearGradient></defs><path fill="url(#igGrad)" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.39C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.39 2.13.67.67 1.34 1.08 2.13 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.39.67-.67 1.08-1.34 1.39-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.39-2.13C20.32 1.35 19.65.94 18.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.86a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg>
+            Instagram
+        </a>
+        <a class="social-link" href="https://www.facebook.com/share/1CFM21LdHq/" target="_blank">
+            <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M22.675 0h-21.35C.59 0 0 .59 0 1.325v21.351C0 23.41.59 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.41 24 24 23.41 24 22.676V1.325C24 .59 23.41 0 22.675 0z"/></svg>
+            Facebook
+        </a>
+        <a class="social-link" href="https://github.com/alfarise1" target="_blank">
+            <svg viewBox="0 0 24 24"><path fill="#181717" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.535-1.5.115-3.15 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.65 1.65.24 2.85.12 3.15.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+        </a>
+        <a class="social-link" href="https://wa.me/923067010978" target="_blank">
+            <svg viewBox="0 0 24 24"><path fill="#25D366" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.72.45 3.39 1.32 4.86L2 22l5.25-1.38c1.41.77 3 1.18 4.79 1.18 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.5 14.14c-.23.65-1.15 1.19-1.83 1.34-.47.1-1.08.18-3.14-.67-2.63-1.09-4.33-3.76-4.46-3.93-.13-.17-1.07-1.42-1.07-2.71 0-1.29.68-1.92.92-2.18.24-.26.52-.32.7-.32h.5c.16 0 .38-.06.59.45.23.55.79 1.9.86 2.04.07.14.11.3.02.48-.09.18-.14.29-.28.44-.14.16-.29.35-.42.47-.14.13-.28.27-.12.53.16.26.71 1.17 1.52 1.89 1.04.93 1.92 1.22 2.19 1.36.27.14.42.11.58-.07.16-.18.66-.77.84-1.03.18-.26.35-.22.59-.13.24.09 1.53.72 1.8.85.27.13.44.2.51.3.07.11.07.65-.16 1.3z"/></svg>
+            WhatsApp
+        </a>
+    </div>
+</section>
+
+<footer>© 2026 Alfa Rise. All rights reserved.</footer>
+
+<script>
+    function setCurrency(curr) {
+        document.querySelectorAll('.curr-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-curr="' + curr + '"]').classList.add('active');
+        document.querySelectorAll('.p-pkr').forEach(el => el.style.display = curr === 'pkr' ? 'inline' : 'none');
+        document.querySelectorAll('.p-usd').forEach(el => el.style.display = curr === 'usd' ? 'inline' : 'none');
+    }
+    (function() {
+        try {
+            var locale = navigator.language || navigator.userLanguage || '';
+            var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+            if (!locale.toLowerCase().includes('pk') && !tz.toLowerCase().includes('karachi')) {
+                setCurrency('usd');
+            }
+        } catch (e) {}
+    })();
+
+    // Subtle reveal animation as sections enter view
+    (function() {
+        var sections = document.querySelectorAll('section');
+        sections.forEach(function(s) {
+            s.style.opacity = '0';
+            s.style.transform = 'translateY(14px)';
+            s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(function(s) { observer.observe(s); });
+    })();
+</script>
+
+</body>
+</html>
