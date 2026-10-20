@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Alfa Rise</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f7f4ee;color:#14231f;margin:0;padding:24px}
+.box{max-width:420px;margin:40px auto;background:#fff;padding:24px;border:1px solid #d8d2c4;border-radius:6px}
+h1{font-size:22px;margin:0 0 8px;color:#0a332f}
+p{margin:6px 0 16px;font-size:15px}
+a.btn,button{display:block;width:100%;padding:12px;border:0;border-radius:4px;font-size:16px;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;box-sizing:border-box;margin-top:10px}
+.p{background:#0f4c46;color:#fff}.s{background:#c98a3e;color:#0a332f}
+</style>
+</head>
+<body>
+<div class="box" id="box" style="display:none">
+<h1>Welcome to Alfa Rise</h1>
+<p id="who"></p>
+<a class="btn p" href="index.html">Go to website</a>
+<button class="s" id="logout">Logout</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+var sb = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+sb.auth.getSession().then(function(r){
+  var s = r.data.session;
+  if(!s){ window.location.replace('login.html'); return; }
+  document.getElementById('who').textContent = 'Logged in as ' + s.user.email;
+  document.getElementById('box').style.display = 'block';
+});
+document.getElementById('logout').onclick = async function(){
+  await sb.auth.signOut();
+  window.location.replace('login.html');
+};
+</script>
+</body>
+</html>
