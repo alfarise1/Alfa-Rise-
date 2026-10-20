@@ -24,10 +24,6 @@ button{width:100%;padding:12px;border:0;border-radius:4px;font-size:16px;font-we
 <button class="p" id="login">Login</button>
 <button class="s" id="signup">Sign up</button>
 </div>
-<div id="in" style="display:none">
-<p id="who"></p>
-<button class="p" id="logout">Logout</button>
-</div>
 <div id="msg"></div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -37,9 +33,7 @@ var sb = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
 var $ = function(id){return document.getElementById(id)};
 function say(t, ok){var m=$('msg');m.textContent=t;m.className=ok?'ok':'err'}
 function view(session){
-  $('out').style.display = session ? 'none' : 'block';
-  $('in').style.display = session ? 'block' : 'none';
-  if(session){$('who').textContent='Logged in as '+session.user.email}
+  if(session){window.location.replace('dashboard.html')}
 }
 sb.auth.getSession().then(function(r){view(r.data.session)});
 sb.auth.onAuthStateChange(function(e,s){view(s)});
@@ -51,7 +45,6 @@ $('login').onclick=async function(){
   var r=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
   if(r.error){say(r.error.message,false)}else{say('Login successful.',true)}
 };
-$('logout').onclick=async function(){await sb.auth.signOut();say('Logged out.',true)};
 </script>
 </body>
 </html>
