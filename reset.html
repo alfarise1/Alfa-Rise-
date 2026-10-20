@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reset Password — Alfa Rise</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f7f4ee;color:#14231f;margin:0;padding:24px}
+.box{max-width:360px;margin:40px auto;background:#fff;padding:24px;border:1px solid #d8d2c4;border-radius:6px}
+h1{font-size:22px;margin:0 0 16px;color:#0a332f}
+input{width:100%;padding:12px;margin:6px 0 12px;border:1px solid #d8d2c4;border-radius:4px;font-size:16px;box-sizing:border-box}
+button{width:100%;padding:12px;border:0;border-radius:4px;font-size:16px;font-weight:600;cursor:pointer;margin-top:6px}
+.p{background:#0f4c46;color:#fff}
+a{color:#0f4c46;font-size:14px}
+#msg{margin-top:14px;font-size:14px;min-height:20px}
+.err{color:#b00020}.ok{color:#0f4c46}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>Reset Password</h1>
+<div id="request">
+<label>Email</label><input id="email" type="email" autocomplete="email">
+<button class="p" id="send">Send reset link</button>
+</div>
+<div id="newpw" style="display:none">
+<label>New password (min 8 characters)</label><input id="pw" type="password" autocomplete="new-password">
+<button class="p" id="save">Save new password</button>
+</div>
+<p><a href="login.html">Back to login</a></p>
+<div id="msg"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+var sb = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+var $ = function(id){return document.getElementById(id)};
+function say(t, ok){var m=$('msg');m.textContent=t;m.className=ok?'ok':'err'}
+sb.auth.onAuthStateChange(function(e){
+  if(e==='PASSWORD_RECOVERY'){
+    $('request').style.display='none';
+    $('newpw').style.display='block';
+  }
+});
+$('send').onclick=async function(){
+  var email=$('email').value.trim();
+  if(!email){say('Enter your email.',false);return}
+  var r=await sb.auth.resetPasswordForEmail(email,{redirectTo:'https://alfarise1.github.io/Alfa-Rise-/reset.html'});
+  if(r.error){say(r.error.message,false)}else{say('If this email is registered,
