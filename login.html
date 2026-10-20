@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — Alfa Rise</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f7f4ee;color:#14231f;margin:0;padding:24px}
+.box{max-width:360px;margin:40px auto;background:#fff;padding:24px;border:1px solid #d8d2c4;border-radius:6px}
+h1{font-size:22px;margin:0 0 16px;color:#0a332f}
+input{width:100%;padding:12px;margin:6px 0 12px;border:1px solid #d8d2c4;border-radius:4px;font-size:16px;box-sizing:border-box}
+button{width:100%;padding:12px;border:0;border-radius:4px;font-size:16px;font-weight:600;cursor:pointer;margin-top:6px}
+.p{background:#0f4c46;color:#fff}.s{background:#c98a3e;color:#0a332f}
+#msg{margin-top:14px;font-size:14px;min-height:20px}
+.err{color:#b00020}.ok{color:#0f4c46}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>Alfa Rise Account</h1>
+<div id="out">
+<label>Email</label><input id="email" type="email" autocomplete="email">
+<label>Password</label><input id="password" type="password" autocomplete="current-password">
+<button class="p" id="login">Login</button>
+<button class="s" id="signup">Sign up</button>
+</div>
+<div id="in" style="display:none">
+<p id="who"></p>
+<button class="p" id="logout">Logout</button>
+</div>
+<div id="msg"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+var sb = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+var $ = function(id){return document.getElementById(id)};
+function say(t, ok){var m=$('msg');m.textContent=t;m.className=ok?'ok':'err'}
+function view(session){
+  $('out').style.display = session ? 'none' : 'block';
+  $('in').style.display = session ? 'block' : 'none';
+  if(session){$('who').textContent='Logged in as '+session.user.email}
+}
+sb.auth.getSession().then(function(r){view(r.data.session)});
+sb.auth.onAuthStateChange(function(e,s){view(s)});
+$('signup').onclick=async function(){
+  var r=await sb.auth.signUp({email:$('email').value.trim(),password:$('password').value,options:{emailRedirectTo:'https://alfarise1.github.io/Alfa-Rise-/login.html'}});
+  if(r.error){say(r.error.message,false)}else{say('Signup done. Check your email to confirm, then login.',true)}
+};
+$('login').onclick=async function(){
+  var r=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
+  if(r.error){say(r.error.message,false)}else{say('Login successful.',true)}
+};
+$('logout').onclick=async function(){await sb.auth.signOut();say('Logged out.',true)};
+</script>
+</body>
+</html>
