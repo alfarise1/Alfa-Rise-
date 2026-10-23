@@ -50,6 +50,7 @@ async function loadInquiries(){
     var a = document.createElement('a'); a.textContent = q.phone;
     a.href = 'tel:' + String(q.phone).replace(/[^0-9+]/g,'');
     p.appendChild(a); c.appendChild(p);
+        var dg = String(q.phone).replace(/[^0-9]/g,''); if(dg.charAt(0)==='0'){dg='92'+dg.slice(1)} var w = document.createElement('a'); w.textContent = 'WhatsApp'; w.target = '_blank'; w.rel = 'noopener'; w.href = 'https://wa.me/' + dg; p.appendChild(document.createTextNode(' · ')); p.appendChild(w);
     var sv = document.createElement('div'); sv.textContent = 'Service: ' + (q.service || '-'); c.appendChild(sv);
     if(q.message){var m = document.createElement('div'); m.textContent = q.message; c.appendChild(m)}
     var d = document.createElement('div'); d.className = 'meta'; d.textContent = new Date(q.created_at).toLocaleString(); c.appendChild(d);
