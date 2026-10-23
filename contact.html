@@ -59,8 +59,7 @@ $('f').addEventListener('submit', async function(e){
   var r=await sb.from('inquiries').insert({name:name,phone:phone,service:$('service').value,message:$('message').value.trim()});
   $('go').disabled=false;
   if(r.error){say('Could not send. Please try again or WhatsApp us.',false)}
-  else{say('Thank you! We received your inquiry and will contact you soon.',true);$('f').reset()}
-});
+  else{try{fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:'1177864a-dfe3-4f0f-b894-113c5a4411b3',subject:'New Alfa Rise inquiry',from_name:'Alfa Rise Website',name:name,phone:phone,service:$('service').value,message:$('message').value.trim()})}).catch(function(){})}catch(e){} say('Thank you! We received your inquiry and will contact you soon.',true);$('f').reset()}
 </script>
 </body>
 </html>
