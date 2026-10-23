@@ -45,3 +45,32 @@ async function loadInquiries(){
   if(!r.data.length){list.textContent='No inquiries yet.';return}
   r.data.forEach(function(q){
     var c = document.createElement('div'); c.className = 'card';
+    var n = document.createElement('b'); n.textContent = q.name; c.appendChild(n);
+    var p = document.createElement('div');
+    var a = document.createElement('a'); a.textContent = q.phone;
+    a.href = 'tel:' + String(q.phone).replace(/[^0-9+]/g,'');
+    p.appendChild(a); c.appendChild(p);
+    var sv = document.createElement('div'); sv.textContent = 'Service: ' + (q.service || '-'); c.appendChild(sv);
+    if(q.message){var m = document.createElement('div'); m.textContent = q.message; c.appendChild(m)}
+    var d = document.createElement('div'); d.className = 'meta'; d.textContent = new Date(q.created_at).toLocaleString(); c.appendChild(d);
+    list.appendChild(c);
+  });
+}
+sb.auth.getSession().then(function(r){
+  var s = r.data.session;
+  if(!s){ window.location.replace('login.html'); return; }
+  $('who').textContent = 'Logged in as ' + s.user.email;
+  $('box').style.display = 'block';
+  if(s.user.email && s.user.email.toLowerCase() === ADMIN){
+    $('admin').style.display = 'block';
+    loadInquiries();
+  }
+});
+$('refresh').onclick = loadInquiries;
+$('logout').onclick = async function(){
+  await sb.auth.signOut();
+  window.location.replace('login.html');
+};
+</script>
+</body>
+</html>
