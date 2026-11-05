@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: Ping Supabase
         run: |
-          curl -s -o /dev/null -w "HTTP %{http_code}\n" "https://zkclzshsjcehcpztgjak.supabase.co/rest/v1/inquiries?select=id&limit=1" -H "apikey: sb_publishable_H7A-QimS5xFGWJXRJABmnQ_jbjyZ3aw"
+          curl -sS --fail -X POST "https://zkclzshsjcehcpztgjak.supabase.co/rest/v1/rpc/ping" -H "apikey: sb_publishable_H7A-QimS5xFGWJXRJABmnQ_jbjyZ3aw" -H "Content-Type: application/json" -d "{}" -w "\nHTTP %{http_code}\n"
