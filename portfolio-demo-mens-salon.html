@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gentlemen's Cut - Demo by Alfa Rise</title>
+<style>
+:root{--bg:#12171f;--card:#1b2430;--line:#2c3b52;--ink:#eef1f5;--mut:#a9b3c2;--acc:#d9a441;--accink:#12171f;--hero:linear-gradient(135deg,#1b2430,#2c3b52)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);padding-bottom:70px}
+.top{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:12px 16px;font-family:Arial}
+.top b{font-family:Georgia,serif;color:var(--acc);font-size:17px}
+.top a{background:var(--acc);color:var(--accink);text-decoration:none;font-weight:bold;font-size:13px;padding:8px 14px;border-radius:20px}
+header{background:var(--hero);padding:60px 20px 50px;text-align:center}
+header h1{font-size:clamp(30px,7vw,44px);color:var(--acc);margin-bottom:8px}
+header p{font-size:16px;color:var(--ink)}
+.open{display:inline-block;margin-top:14px;font-family:Arial;font-size:13px;font-weight:bold;padding:6px 14px;border-radius:20px;border:1px solid var(--acc)}
+.open.on{background:#1f8a4c;color:#fff;border-color:#1f8a4c}.open.off{background:#8a2a2a;color:#fff;border-color:#8a2a2a}
+.badge{display:block;width:max-content;max-width:100%;margin:14px auto 0;background:var(--acc);color:var(--accink);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:bold;font-family:Arial}
+section{max-width:650px;margin:0 auto;padding:36px 20px}
+h2{text-align:center;color:var(--acc);margin-bottom:8px;font-size:24px}
+.sub{text-align:center;font-family:Arial;font-size:13px;color:var(--mut);margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.svc{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:16px;text-align:center;cursor:pointer;color:var(--ink);font:inherit}
+.svc .n{font-weight:bold;color:var(--acc);margin-bottom:4px}.svc .p{font-size:14px}
+.svc.sel{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset}
+.total{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center;font-family:Arial}
+.total b{font-size:22px;color:var(--acc)}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gal div{aspect-ratio:1;border-radius:10px;background:var(--g);display:flex;align-items:center;justify-content:center;font-family:Arial;font-size:11px;color:var(--accink);text-align:center;padding:4px}
+form{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:12px;font-family:Arial}
+label{font-size:13px;color:var(--mut);display:grid;gap:4px}
+input,select{padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:15px}
+button.go{background:var(--acc);color:var(--accink);border:0;border-radius:8px;padding:14px;font-weight:bold;font-size:15px;cursor:pointer}
+.ok{display:none;background:#1f8a4c;color:#fff;padding:12px;border-radius:8px;font-size:14px;line-height:1.5}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;font-family:Arial}
+summary{cursor:pointer;font-weight:bold;color:var(--acc)}details p{margin-top:8px;font-size:14px;color:var(--mut);line-height:1.5}
+.hours{text-align:center;font-family:Arial;line-height:1.8;color:var(--mut)}
+.cta{text-align:center;padding:46px 20px;background:var(--card)}
+.btn{display:inline-block;background:var(--acc);color:var(--accink);padding:14px 30px;border-radius:8px;text-decoration:none;font-weight:bold;font-family:Arial}
+footer{text-align:center;padding:20px;font-size:13px;color:var(--mut);font-family:Arial}
+.fab{position:fixed;right:14px;bottom:14px;z-index:20;background:var(--acc);color:var(--accink);text-decoration:none;font-family:Arial;font-weight:bold;font-size:13px;padding:12px 16px;border-radius:30px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+<div class="top"><b>The Gentlemen's Cut</b><a href="#book">Book Now</a></div>
+<header>
+<h1>The Gentlemen's Cut</h1>
+<p>Haircut, Beard &amp; Grooming for Men</p>
+<div id="open" class="open">Checking hours…</div>
+<div class="badge">DEMO PROJECT — Concept design by Alfa Rise, not a real client</div>
+</header>
+<section>
+<h2>Pick Your Services</h2>
+<p class="sub">Tap to select — total updates live</p>
+<div class="grid" id="svcs"></div>
+<div class="total"><span id="tl">Estimated total:</span> <b id="tot">Rs 0</b><div id="cnt" style="font-size:12px;color:var(--mut);margin-top:4px">Nothing selected</div></div>
+</section>
+<section>
+<h2>Gallery</h2>
+<p class="sub">Your real photos go here</p>
+<div class="gal" id="gal"></div>
+</section>
+<section id="book">
+<h2>Book an Appointment</h2>
+<p class="sub">Demo form — on your real site this reaches you instantly</p>
+<form id="f">
+<label>Your name<input id="nm" required minlength="2" placeholder="Full name"></label>
+<label>Service<select id="sv"></select></label>
+<label>Preferred date<input id="dt" type="date" required></label>
+<button class="go" type="submit">Request Appointment</button>
+<div class="ok" id="ok"></div>
+</form>
+</section>
+<section>
+<h2>Questions</h2>
+<details><summary>Do I need an appointment?</summary><p>Walk-ins are welcome. Booking ahead saves you waiting time.</p></details><details><summary>Do you do groom packages?</summary><p>Yes, groom packages are quoted after a quick chat.</p></details><details><summary>Is the shop open on Fridays?</summary><p>Yes, every day. (Sample answer — your real answers go here.)</p></details>
+</section>
+<section>
+<h2>Opening Hours</h2>
+<p class="hours">Every day: 11 AM – 11 PM</p>
+</section>
+<div class="cta">
+<h2 style="margin-bottom:16px">Want a website like this?</h2>
+<a class="btn" href="contact.html">Get Your Free Website Check</a>
+</div>
+<footer>This is a demo website created to showcase Alfa Rise's design work.</footer>
+<a class="fab" href="contact.html">Get this website</a>
+<script>
+var S=[["Haircut", 600], ["Beard Trim", 400], ["Haircut + Beard", 900], ["Facial & Clean-up", 1500], ["Hair Colour", 1800], ["Head Massage", 500], ["Shave", 300], ["Hair Treatment", 2500], ["Groom Package", 0]];
+var HRS={"0": [11, 23], "1": [11, 23], "2": [11, 23], "3": [11, 23], "4": [11, 23], "5": [11, 23], "6": [11, 23]};
+var box=document.getElementById('svcs'),sel=document.getElementById('sv'),sum={};
+S.forEach(function(s,i){
+ var b=document.createElement('button');b.type='button';b.className='svc';
+ b.innerHTML='<div class="n">'+s[0]+'</div><div class="p">'+(s[2]||(s[1]?'Rs '+s[1].toLocaleString('en-US'):'Custom quote'))+'</div>';
+ b.onclick=function(){sum[i]=!sum[i];b.classList.toggle('sel',sum[i]);calc()};box.appendChild(b);
+ var o=document.createElement('option');o.textContent=s[0];sel.appendChild(o)});
+function calc(){var t=0,c=0;S.forEach(function(s,i){if(sum[i]){c++;t+=s[1]}});
+ var any=S.some(function(s){return s[1]>0});
+ document.getElementById('tot').textContent=any?'Rs '+t.toLocaleString('en-US'):c;
+ document.getElementById('cnt').textContent=c?c+' selected':'Nothing selected'}
+var G=["linear-gradient(135deg,#d9a441,#2c3b52)", "linear-gradient(135deg,#2c3b52,#d9a441)", "linear-gradient(135deg,#8a6a2a,#1b2430)"],gal=document.getElementById('gal');
+for(var k=0;k<6;k++){var d=document.createElement('div');d.style.setProperty('--g',G[k%G.length]);d.textContent='Photo '+(k+1);gal.appendChild(d)}
+(function(){var n=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Karachi'}));
+ var h=n.getHours()+n.getMinutes()/60,w=HRS[n.getDay()],e=document.getElementById('open');
+ if(w&&h>=w[0]&&h<w[1]){e.textContent='Open now · closes '+fmt(w[1]);e.className='open on'}
+ else{e.textContent='Closed now';e.className='open off'}
+ function fmt(x){var m=x%24,a=m>=12?'PM':'AM',y=m%12||12;return y+' '+a}})();
+var dt=document.getElementById('dt');dt.min=new Date().toISOString().slice(0,10);
+document.getElementById('f').onsubmit=function(e){e.preventDefault();
+ var o=document.getElementById('ok');o.style.display='block';
+ o.textContent='Demo only: on a real site, '+document.getElementById('nm').value+'’s request (Service: '+sel.value+', '+dt.value+') would reach the owner by WhatsApp and email.'};
+</script>
+</body>
+</html>
