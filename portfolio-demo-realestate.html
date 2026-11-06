@@ -3,58 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Horizon Properties — Demo by Alfa Rise</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Horizon Properties - Demo by Alfa Rise</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', Arial, sans-serif; background: #faf8f4; color: #2b2620; }
-.demo-badge { background: #8a6a3d; color: #fff; text-align: center; padding: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; }
-header { background: #1c1710; color: #f5efe4; padding: 60px 24px 70px; text-align: center; }
-header h1 { font-family: 'Fraunces', serif; font-size: clamp(30px,6vw,42px); margin-bottom: 10px; color: #e0b673; }
-header p { color: #cbbfa8; font-size: 16px; max-width: 420px; margin: 0 auto; }
-.btn { display: inline-block; background: #e0b673; color: #1c1710; padding: 13px 28px; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 15px; margin-top: 26px; }
-section { max-width: 650px; margin: 0 auto; padding: 46px 24px; }
-h2 { text-align: center; color: #8a6a3d; margin-bottom: 26px; font-family: 'Fraunces', serif; font-size: 24px; }
-.listings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 18px; }
-.listing-card { background: white; border-radius: 10px; overflow: hidden; border: 1px solid #e8e0d2; }
-.listing-img { background: linear-gradient(135deg, #d9c8a8, #c4a876); height: 90px; display: flex; align-items: center; justify-content: center; }
-.listing-info { padding: 14px; }
-.listing-info h4 { font-size: 15px; margin-bottom: 4px; color: #2b2620; }
-.listing-info .price { color: #8a6a3d; font-weight: 700; font-size: 15px; }
-.listing-info .loc { color: #8a8171; font-size: 12.5px; }
-.cta { text-align: center; padding: 50px 24px; background: #1c1710; color: #f5efe4; }
-.cta h2 { color: #e0b673; }
-footer { text-align: center; padding: 22px; font-size: 12.5px; color: #a89a80; }
+:root{--bg:#faf8f4;--card:#ffffff;--line:#e8e0d2;--ink:#2b2620;--mut:#7a6f5d;--acc:#8a6a3d;--accink:#ffffff;--hero:linear-gradient(135deg,#1c1710,#3a2f1d)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);padding-bottom:70px}
+.top{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:12px 16px;font-family:Arial}
+.top b{font-family:Georgia,serif;color:var(--acc);font-size:17px}
+.top a{background:var(--acc);color:var(--accink);text-decoration:none;font-weight:bold;font-size:13px;padding:8px 14px;border-radius:20px}
+header{background:var(--hero);padding:60px 20px 50px;text-align:center}
+header h1{font-size:clamp(30px,7vw,44px);color:var(--acc);margin-bottom:8px}
+header p{font-size:16px;color:#e8dcc4}
+.open{display:inline-block;margin-top:14px;font-family:Arial;font-size:13px;font-weight:bold;padding:6px 14px;border-radius:20px;border:1px solid var(--acc)}
+.open.on{background:#1f8a4c;color:#fff;border-color:#1f8a4c}.open.off{background:#8a2a2a;color:#fff;border-color:#8a2a2a}
+.badge{display:block;width:max-content;max-width:100%;margin:14px auto 0;background:var(--acc);color:var(--accink);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:bold;font-family:Arial}
+section{max-width:650px;margin:0 auto;padding:36px 20px}
+h2{text-align:center;color:var(--acc);margin-bottom:8px;font-size:24px}
+.sub{text-align:center;font-family:Arial;font-size:13px;color:var(--mut);margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.svc{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:16px;text-align:center;cursor:pointer;color:var(--ink);font:inherit}
+.svc .n{font-weight:bold;color:var(--acc);margin-bottom:4px}.svc .p{font-size:14px}
+.svc.sel{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset}
+.total{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center;font-family:Arial}
+.total b{font-size:22px;color:var(--acc)}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gal div{aspect-ratio:1;border-radius:10px;background:var(--g);display:flex;align-items:center;justify-content:center;font-family:Arial;font-size:11px;color:var(--accink);text-align:center;padding:4px}
+form{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:12px;font-family:Arial}
+label{font-size:13px;color:var(--mut);display:grid;gap:4px}
+input,select{padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:15px}
+button.go{background:var(--acc);color:var(--accink);border:0;border-radius:8px;padding:14px;font-weight:bold;font-size:15px;cursor:pointer}
+.ok{display:none;background:#1f8a4c;color:#fff;padding:12px;border-radius:8px;font-size:14px;line-height:1.5}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;font-family:Arial}
+summary{cursor:pointer;font-weight:bold;color:var(--acc)}details p{margin-top:8px;font-size:14px;color:var(--mut);line-height:1.5}
+.hours{text-align:center;font-family:Arial;line-height:1.8;color:var(--mut)}
+.cta{text-align:center;padding:46px 20px;background:var(--card)}
+.btn{display:inline-block;background:var(--acc);color:var(--accink);padding:14px 30px;border-radius:8px;text-decoration:none;font-weight:bold;font-family:Arial}
+footer{text-align:center;padding:20px;font-size:13px;color:var(--mut);font-family:Arial}
+.fab{position:fixed;right:14px;bottom:14px;z-index:20;background:var(--acc);color:var(--accink);text-decoration:none;font-family:Arial;font-weight:bold;font-size:13px;padding:12px 16px;border-radius:30px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
 </style>
 </head>
 <body>
-<div class="demo-badge">DEMO PROJECT — Concept design by Alfa Rise, not a real client</div>
+<div class="top"><b>Horizon Properties</b><a href="#book">Book Now</a></div>
 <header>
-    <h1>Horizon Properties</h1>
-    <p>Find your next home or investment — trusted local property experts.</p>
-    <a class="btn" href="#">View Listings</a>
+<h1>Horizon Properties</h1>
+<p>Find your next home or investment — trusted local property experts.</p>
+<div id="open" class="open">Checking hours…</div>
+<div class="badge">DEMO PROJECT — Concept design by Alfa Rise, not a real client</div>
 </header>
 <section>
-    <h2>Featured Listings</h2>
-    <div class="listings-grid">
-        <div class="listing-card">
-            <div class="listing-img"><svg viewBox="0 0 24 24" fill="none" stroke="#5a4626" stroke-width="1.5" style="width:34px;height:34px;"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div>
-            <div class="listing-info"><h4>5 Marla House, DHA</h4><div class="price">Rs 2.2 Crore</div><div class="loc">DHA Phase 6, Lahore</div></div>
-        </div>
-        <div class="listing-card">
-            <div class="listing-img"><svg viewBox="0 0 24 24" fill="none" stroke="#5a4626" stroke-width="1.5" style="width:34px;height:34px;"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"/></svg></div>
-            <div class="listing-info"><h4>2-Bed Apartment</h4><div class="price">Rs 85 Lac</div><div class="loc">Bahria Town</div></div>
-        </div>
-        <div class="listing-card">
-            <div class="listing-img"><svg viewBox="0 0 24 24" fill="none" stroke="#5a4626" stroke-width="1.5" style="width:34px;height:34px;"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
-            <div class="listing-info"><h4>10 Marla Plot</h4><div class="price">Rs 1.5 Crore</div><div class="loc">Johar Town</div></div>
-        </div>
-    </div>
+<h2>Featured Listings</h2>
+<p class="sub">Tap to shortlist properties you like</p>
+<div class="grid" id="svcs"></div>
+<div class="total"><span id="tl">Shortlisted:</span> <b id="tot">Rs 0</b><div id="cnt" style="font-size:12px;color:var(--mut);margin-top:4px">Nothing selected</div></div>
+</section>
+<section>
+<h2>Property Photos</h2>
+<p class="sub">Your real photos go here</p>
+<div class="gal" id="gal"></div>
+</section>
+<section id="book">
+<h2>Book a Viewing</h2>
+<p class="sub">Demo form — on your real site this reaches you instantly</p>
+<form id="f">
+<label>Your name<input id="nm" required minlength="2" placeholder="Full name"></label>
+<label>Property<select id="sv"></select></label>
+<label>Viewing date<input id="dt" type="date" required></label>
+<button class="go" type="submit">Request Viewing</button>
+<div class="ok" id="ok"></div>
+</form>
+</section>
+<section>
+<h2>Questions</h2>
+<details><summary>Can I visit a property before buying?</summary><p>Yes, book a viewing and our agent will accompany you. (Sample answer — your real answers go here.)</p></details><details><summary>Do you help with documents and transfer?</summary><p>Yes, we guide you through the full process.</p></details><details><summary>Do you list properties for sale and rent?</summary><p>Both, across major localities.</p></details>
+</section>
+<section>
+<h2>Opening Hours</h2>
+<p class="hours">Monday to Saturday: 10 AM – 7 PM<br>Sunday: By appointment</p>
 </section>
 <div class="cta">
-    <h2>Looking to Buy or Sell?</h2>
-    <a class="btn" href="#"><svg style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.72.45 3.39 1.32 4.86L2 22l5.25-1.38c1.41.77 3 1.18 4.79 1.18 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/></svg>Talk to an Agent on WhatsApp</a>
+<h2 style="margin-bottom:16px">Want a website like this?</h2>
+<a class="btn" href="contact.html">Get Your Free Website Check</a>
 </div>
-<footer>This is a demo/concept website created to showcase Alfa Rise's design capabilities.</footer>
+<footer>This is a demo website created to showcase Alfa Rise's design work.</footer>
+<a class="fab" href="contact.html">Get this website</a>
+<script>
+var S=[["5 Marla House, DHA Phase 6, Lahore", 0, "Rs 2.2 Crore"], ["2-Bed Apartment, Bahria Town", 0, "Rs 85 Lac"], ["10 Marla Plot, Johar Town", 0, "Rs 1.5 Crore"], ["1 Kanal House, Model Town", 0, "Rs 6.5 Crore"]];
+var HRS={"0": null, "1": [10, 19], "2": [10, 19], "3": [10, 19], "4": [10, 19], "5": [10, 19], "6": [10, 19]};
+var box=document.getElementById('svcs'),sel=document.getElementById('sv'),sum={};
+S.forEach(function(s,i){
+ var b=document.createElement('button');b.type='button';b.className='svc';
+ b.innerHTML='<div class="n">'+s[0]+'</div><div class="p">'+(s[2]||(s[1]?'Rs '+s[1].toLocaleString('en-US'):'Custom quote'))+'</div>';
+ b.onclick=function(){sum[i]=!sum[i];b.classList.toggle('sel',sum[i]);calc()};box.appendChild(b);
+ var o=document.createElement('option');o.textContent=s[0];sel.appendChild(o)});
+function calc(){var t=0,c=0;S.forEach(function(s,i){if(sum[i]){c++;t+=s[1]}});
+ var any=S.some(function(s){return s[1]>0});
+ document.getElementById('tot').textContent=any?'Rs '+t.toLocaleString('en-US'):c;
+ document.getElementById('cnt').textContent=c?c+' selected':'Nothing selected'}
+var G=["linear-gradient(135deg,#8a6a3d,#e0b673)", "linear-gradient(135deg,#3a2f1d,#c4a876)", "linear-gradient(135deg,#c4a876,#faf8f4)"],gal=document.getElementById('gal');
+for(var k=0;k<6;k++){var d=document.createElement('div');d.style.setProperty('--g',G[k%G.length]);d.textContent='Photo '+(k+1);gal.appendChild(d)}
+(function(){var n=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Karachi'}));
+ var h=n.getHours()+n.getMinutes()/60,w=HRS[n.getDay()],e=document.getElementById('open');
+ if(w&&h>=w[0]&&h<w[1]){e.textContent='Open now · closes '+fmt(w[1]);e.className='open on'}
+ else{e.textContent='Closed now';e.className='open off'}
+ function fmt(x){var m=x%24,a=m>=12?'PM':'AM',y=m%12||12;return y+' '+a}})();
+var dt=document.getElementById('dt');dt.min=new Date().toISOString().slice(0,10);
+document.getElementById('f').onsubmit=function(e){e.preventDefault();
+ var o=document.getElementById('ok');o.style.display='block';
+ o.textContent='Demo only: on a real site, '+document.getElementById('nm').value+'’s request (Property: '+sel.value+', '+dt.value+') would reach the owner by WhatsApp and email.'};
+</script>
 </body>
 </html>
